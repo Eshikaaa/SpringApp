@@ -67,11 +67,11 @@ This application is Dockerized using Docker Compose, making it easier to run the
 Ensure that Docker and Docker Compose are installed.
 Clone the repository and navigate to the project directory.
 Use the following command to start the application with Docker Compose:
-sh
-Copy
-Edit
+```sh
 docker-compose up --build
+
 The application will be accessible at http://localhost:8080.
+
 The PostgreSQL database will be available at localhost:5432.
 Docker Compose Configuration
 The Docker Compose configuration includes the following services:
@@ -96,7 +96,6 @@ To access the application externally, use the NodePort service configured in Kub
 kubectl apply -f postgres-deployment.yaml
 kubectl apply -f deployment.yaml
 
-```sh
-minikube service spring-app-service --url
+
 
 
