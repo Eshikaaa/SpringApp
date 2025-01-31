@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    image: app_img
+    container_name: app_container  # Changed container name to 'app_container'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - SPRING_APPLICATION_NAME=app
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_con:5432/Product1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=sky@2024
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_con
+    networks:
+      - mynetwork
+
+  postgres_con:
+    image: postgres:latest
+    container_name: postgres_con
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=sky@2024
+      - POSTGRES_DB=Product1
+    ports:
+      - "5432:5432"
+    volumes:
+      - C:/postgres_container_data:/var/lib/postgresql/data
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    external: true
