@@ -89,13 +89,14 @@ The PostgreSQL container stores data in a mapped volume, ensuring data persists 
    ```sh
    minikube start
 
-## Deploy PostgreSQL and the Spring Boot application using the respective YAML configuration files (postgres-deployment.yaml, spring-deployment.yaml).
+## Deploy PostgreSQL and the Spring Boot application using the respective YAML configuration files (postgres-deployment.yaml, deployment.yaml).
 
 To access the application externally, use the NodePort service configured in Kubernetes:
-
+```sh
 kubectl apply -f postgres-deployment.yaml
-kubectl apply -f spring-deployment.yaml
+kubectl apply -f deployment.yaml
 
+```sh
 minikube service spring-app-service --url
 
 
