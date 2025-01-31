@@ -61,3 +61,41 @@ import org.slf4j.Logger;
 
 ---
 
+### Running with Docker Compose
+This application is Dockerized using Docker Compose, making it easier to run the Spring Boot application and the PostgreSQL database together in containers.
+
+Ensure that Docker and Docker Compose are installed.
+Clone the repository and navigate to the project directory.
+Use the following command to start the application with Docker Compose:
+sh
+Copy
+Edit
+docker-compose up --build
+The application will be accessible at http://localhost:8080.
+The PostgreSQL database will be available at localhost:5432.
+Docker Compose Configuration
+The Docker Compose configuration includes the following services:
+
+### Application:
+The Spring Boot application runs in a container.
+Database: PostgreSQL runs in a separate container for storing product data.
+The docker-compose.yaml file defines the following:
+
+The Spring Boot application container connects to the PostgreSQL container via environment variables.
+The PostgreSQL container stores data in a mapped volume, ensuring data persists across container restarts.
+### Running on Kubernetes with Minikube
+
+1. **Start Minikube**:
+   ```sh
+   minikube start
+
+## Deploy PostgreSQL and the Spring Boot application using the respective YAML configuration files (postgres-deployment.yaml, spring-deployment.yaml).
+
+To access the application externally, use the NodePort service configured in Kubernetes:
+
+kubectl apply -f postgres-deployment.yaml
+kubectl apply -f spring-deployment.yaml
+
+minikube service spring-app-service --url
+
+
